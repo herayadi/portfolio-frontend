@@ -30,7 +30,11 @@ const I18n = (() => {
       contact_label_email: "Email",
       contact_label_message: "Message",
       contact_btn_send: "Send Message",
-      contact_download_cv: "Download CV"
+      contact_download_cv: "Download CV",
+      education_title: "Education",
+      education_subtitle: "My academic background",
+      certifications_title: "Certifications",
+      certifications_subtitle: "Professional validation of my expertise"
     },
     id: {
       nav_about: "Tentang",
@@ -54,7 +58,11 @@ const I18n = (() => {
       contact_label_email: "Email",
       contact_label_message: "Pesan",
       contact_btn_send: "Kirim Pesan",
-      contact_download_cv: "Unduh CV"
+      contact_download_cv: "Unduh CV",
+      education_title: "Pendidikan",
+      education_subtitle: "Latar belakang akademik saya",
+      certifications_title: "Sertifikasi",
+      certifications_subtitle: "Validasi profesional atas keahlian saya"
     }
   };
 

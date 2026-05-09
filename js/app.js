@@ -7,12 +7,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 1. Fetch data from Backend
   // We fetch in parallel for better performance
-  const [profile, experiences, projects, skillCategories, blogPosts] = await Promise.all([
+  const [profile, experiences, projects, skillCategories, blogPosts, education, certifications] = await Promise.all([
     API.getProfile(),
     API.getExperiences(),
     API.getProjects(),
     API.getSkills(),
-    API.getPosts()
+    API.getPosts(),
+    API.getEducation(),
+    API.getCertifications()
   ]);
 
   // 2. Prepare Data Object (Merge Backend data with static fallbacks if needed)
@@ -22,7 +24,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     experience: experiences || DATA.experience,
     projects: projects || DATA.projects,
     skills: skillCategories || DATA.skills,
-    posts: blogPosts || []
+    posts: blogPosts || [],
+    education: education || DATA.education,
+    certifications: certifications || DATA.certifications
   };
 
   // 3. Initialize Modules
@@ -37,6 +41,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   Timeline.init(appData);
   Projects.init(appData);
   Skills.init(appData);
+  Education.init(appData);
+  Certifications.init(appData);
   Blog.init(appData);
   Contact.init(appData);
   Footer.init(appData);

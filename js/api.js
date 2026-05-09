@@ -44,7 +44,9 @@ const API = (() => {
     getSkills: () => _fetchData('/skills'),
     getPosts: () => _fetchData('/posts'),
     getPost: (slug) => _fetchData(`/posts/${slug}`),
-    getProfile: () => _fetchData('/profile'), // We'll need this endpoint
+    getProfile: () => _fetchData('/profile'), 
+    getEducation: () => _fetchData('/education'),
+    getCertifications: () => _fetchData('/certifications'),
     submitContact: (data) => _postData('/contact', data)
   };
 })();
