@@ -88,7 +88,6 @@ const Contact = (() => {
         const formData = {
           name: document.getElementById('contact-name').value,
           email: document.getElementById('contact-email').value,
-          subject: "Contact Form Inquiry", // Default since no field exists
           message: document.getElementById('contact-message').value
         };
 

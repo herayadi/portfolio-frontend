@@ -6,27 +6,22 @@ document.addEventListener('DOMContentLoaded', async () => {
   console.log('[App] Initializing with dynamic data...');
 
   // 1. Fetch data from Backend
-  // We fetch in parallel for better performance
-  const [profile, experiences, projects, skillCategories, blogPosts, education, certifications] = await Promise.all([
-    API.getProfile(),
-    API.getExperiences(),
-    API.getProjects(),
-    API.getSkills(),
-    API.getPosts(),
-    API.getEducation(),
-    API.getCertifications()
+  // We fetch CV data and Blog posts in parallel
+  const [cvData, blogPosts] = await Promise.all([
+    API.getCV(),
+    API.getPosts()
   ]);
 
   // 2. Prepare Data Object (Merge Backend data with static fallbacks if needed)
   const appData = {
-    personal: profile || DATA.personal,
+    personal: cvData?.profile || DATA.personal,
     about: DATA.about, 
-    experience: experiences || DATA.experience,
-    projects: projects || DATA.projects,
-    skills: skillCategories || DATA.skills,
+    experience: cvData?.experiences || DATA.experience,
+    projects: cvData?.projects || DATA.projects,
+    skills: cvData?.skills || DATA.skills,
     posts: blogPosts || [],
-    education: education || DATA.education,
-    certifications: certifications || DATA.certifications
+    education: cvData?.education || DATA.education,
+    certifications: cvData?.certifications || DATA.certifications
   };
 
   // 3. Initialize Modules

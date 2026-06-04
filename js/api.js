@@ -39,14 +39,9 @@ const API = (() => {
   }
 
   return {
-    getExperiences: () => _fetchData('/experiences'),
-    getProjects: () => _fetchData('/projects'),
-    getSkills: () => _fetchData('/skills'),
+    getCV: () => _fetchData('/cv'),
     getPosts: () => _fetchData('/posts'),
     getPost: (slug) => _fetchData(`/posts/${slug}`),
-    getProfile: () => _fetchData('/profile'), 
-    getEducation: () => _fetchData('/education'),
-    getCertifications: () => _fetchData('/certifications'),
     submitContact: (data) => _postData('/contact', data)
   };
 })();
