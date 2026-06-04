@@ -1,6 +1,8 @@
 /* ============================================
-   DATA — All CV Data (Real)
-   Updated from LinkedIn Profile
+   DATA — Static Fallback Data
+   WARNING: This file is only used as an emergency
+   development fallback. The true source of truth
+   is the Supabase Database and the API.
    ============================================ */
 
 const DATA = {

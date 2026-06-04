@@ -12,16 +12,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     API.getPosts()
   ]);
 
-  // 2. Prepare Data Object (Merge Backend data with static fallbacks if needed)
+  const useFallback = !cvData;
+  if (useFallback) {
+    console.warn('[App] WARNING: API failed. Using static emergency fallback from data.js');
+  }
+
+  // 2. Prepare Data Object (Strictly prefer Backend data, DATA is emergency fallback)
   const appData = {
-    personal: cvData?.profile || DATA.personal,
-    about: DATA.about, 
-    experience: cvData?.experiences || DATA.experience,
-    projects: cvData?.projects || DATA.projects,
-    skills: cvData?.skills || DATA.skills,
-    posts: blogPosts || [],
-    education: cvData?.education || DATA.education,
-    certifications: cvData?.certifications || DATA.certifications
+    personal: cvData?.profile ?? DATA.personal,
+    about: DATA.about, // Kept static as it's not in the DB architecture
+    experience: cvData?.experiences ?? DATA.experience,
+    projects: cvData?.projects ?? DATA.projects,
+    skills: cvData?.skills ?? DATA.skills,
+    posts: blogPosts ?? [],
+    education: cvData?.education ?? DATA.education,
+    certifications: cvData?.certifications ?? DATA.certifications
   };
 
   // 3. Bind Dynamic Links
