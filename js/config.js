@@ -6,7 +6,7 @@
 // 1. After deploying the backend to Vercel, copy the provided Vercel URL.
 // 2. Paste the URL into the PRODUCTION_BACKEND_URL variable below.
 // 3. Example: 'https://backend-next-abcd123.vercel.app'
-const PRODUCTION_BACKEND_URL = 'https://YOUR_VERCEL_BACKEND_URL_HERE.vercel.app';
+const PRODUCTION_BACKEND_URL = 'https://backend-heri.vercel.app';
 
 const CONFIG = {
   // Base URL for the API
