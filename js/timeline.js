@@ -32,8 +32,8 @@ const Timeline = (() => {
         ? (lang === 'en' ? 'Show Less' : 'Sembunyikan') 
         : (lang === 'en' ? 'Show Details' : 'Lihat Detail');
 
-      const impactHtml = exp.impact.map(item => `<li>${item}</li>`).join('');
-      const techHtml = exp.tech.map(tech => `<span class="tag">${tech}</span>`).join('');
+      const impactHtml = (exp.impacts || []).map(item => `<li>${item}</li>`).join('');
+      const techHtml = (exp.techs || []).map(tech => `<span class="tag">${tech}</span>`).join('');
       
       // Multi-language fields
       const role = lang === 'en' ? (exp.roleEn || exp.role) : (exp.roleId || exp.role);
@@ -44,7 +44,7 @@ const Timeline = (() => {
       const formatPeriod = (e) => {
         if (!e.startDate) return e.period || '';
         const start = new Date(e.startDate).toLocaleDateString(lang === 'en' ? 'en-US' : 'id-ID', { month: 'short', year: 'numeric' });
-        if (e.current) return `${start} — ${lang === 'en' ? 'Present' : 'Sekarang'}`;
+        if (e.isCurrent) return `${start} — ${lang === 'en' ? 'Present' : 'Sekarang'}`;
         if (!e.endDate) return start;
         const end = new Date(e.endDate).toLocaleDateString(lang === 'en' ? 'en-US' : 'id-ID', { month: 'short', year: 'numeric' });
         return `${start} — ${end}`;

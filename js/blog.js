@@ -74,7 +74,7 @@ const Blog = (() => {
     modalOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
 
-    const htmlContent = marked.parse(post.content);
+    const htmlContent = marked.parse(post.content || '');
     const date = new Date(post.publishedAt).toLocaleDateString(lang === 'en' ? 'en-US' : 'id-ID', {
       year: 'numeric',
       month: 'long',

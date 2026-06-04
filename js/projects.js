@@ -53,7 +53,7 @@ const Projects = (() => {
     
     let html = '';
     filteredData.forEach((project, index) => {
-      const tech = project.tech || [];
+      const tech = project.techs || [];
       const techHtml = tech.slice(0, 3).map(t => `<span class="tag">${t}</span>`).join('');
       
       // i18n field
@@ -115,7 +115,7 @@ const Projects = (() => {
     const project = projectsData.find(p => p.id == projectId);
     if (!project) return;
     
-    const tech = project.tech || [];
+    const tech = project.techs || [];
     const techHtml = tech.map(t => `<span class="tag">${t}</span>`).join('');
     
     // i18n fields

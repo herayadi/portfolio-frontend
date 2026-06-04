@@ -106,8 +106,13 @@ const I18n = (() => {
     _updateSwitcherUI();
     
     // Some modules might need re-rendering for complex dynamic content
-    About.init(appData); // Re-init about to swap bioId/bioEn
-    Timeline.init(appData); 
+    if (typeof About !== 'undefined') About.init(appData);
+    if (typeof Timeline !== 'undefined') Timeline.init(appData); 
+    if (typeof Projects !== 'undefined') Projects.init(appData);
+    if (typeof Skills !== 'undefined') Skills.init(appData);
+    if (typeof Education !== 'undefined') Education.init(appData);
+    if (typeof Certifications !== 'undefined') Certifications.init(appData);
+    if (typeof Blog !== 'undefined') Blog.init(appData);
   }
 
   /**
