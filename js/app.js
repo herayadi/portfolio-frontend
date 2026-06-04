@@ -24,7 +24,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     certifications: cvData?.certifications || DATA.certifications
   };
 
-  // 3. Initialize Modules
+  // 3. Bind Dynamic Links
+  const playgroundLink = document.getElementById('playground-link');
+  if (playgroundLink) {
+    playgroundLink.href = CONFIG.PLAYGROUND_URL;
+  }
+
+  // 4. Initialize Modules
   Theme.init();
   Navigation.init();
   
