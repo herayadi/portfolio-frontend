@@ -95,20 +95,50 @@ const Contact = (() => {
         submitBtn.disabled = true;
         submitBtn.style.opacity = '0.7';
 
-        const response = await API.submitContact(formData);
+        try {
+          const response = await API.submitContact(formData);
 
-        if (response && response.ok) {
-          form.reset();
-          submitBtn.innerHTML = `
-            <span>Message Sent!</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          `;
-          submitBtn.style.background = 'var(--accent-secondary)';
-          submitBtn.style.borderColor = 'var(--accent-secondary)';
-        } else {
+          if (response && response.ok) {
+            form.reset();
+            submitBtn.innerHTML = `
+              <span>Message Sent!</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            `;
+            submitBtn.style.background = 'var(--accent-secondary)';
+            submitBtn.style.borderColor = 'var(--accent-secondary)';
+
+            if (typeof Swal !== 'undefined') {
+              Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Your message has been sent successfully.',
+                confirmButtonColor: 'var(--accent-primary)',
+                background: 'var(--bg-secondary)',
+                color: 'var(--text-primary)'
+              });
+            } else {
+              alert('Message sent successfully!');
+            }
+          } else {
+            throw new Error('Failed to send message.');
+          }
+        } catch (error) {
           submitBtn.innerHTML = '<span>Failed to send.</span>';
           submitBtn.style.background = '#ef4444';
           submitBtn.style.borderColor = '#ef4444';
+          
+          if (typeof Swal !== 'undefined') {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong. Please try again later.',
+              confirmButtonColor: 'var(--accent-primary)',
+              background: 'var(--bg-secondary)',
+              color: 'var(--text-primary)'
+            });
+          } else {
+            alert('Failed to send message. Please try again later.');
+          }
         }
 
         setTimeout(() => {
